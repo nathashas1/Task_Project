@@ -1,22 +1,7 @@
-// import React, { Component } from 'react'
-import './App.css'
-// import Fetch from './Fetch.js'
-//
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <Fetch/>
-//       </div>
-//     )
-//   }
-// }
-
-
 import React from 'react';
 import TaskGroup from './task_group.js'
 
-class App extends React.Component {
+class Fetch extends React.Component {
   constructor(props) {
     super(props);
     this.state  = {
@@ -51,7 +36,6 @@ class App extends React.Component {
           <div>
             <TaskGroup allData={this.state.allData}
             groups={this.state.groups}
-            completedTasks={0}
             />
           </div>
         )
@@ -59,4 +43,4 @@ class App extends React.Component {
 
     }
 
-    export default App;
+    export default Fetch;
