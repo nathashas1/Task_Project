@@ -7,14 +7,11 @@ class TaskGroup extends React.Component {
     super(props);
     this.state = {
       tasks: [],
-      groups: {},
       showGroup: true,
       showTasks: false,
       selectedGroup: "",
-      allData: [],
     }
     this.handleClick = this.handleClick.bind(this)
-    console.log("prop",this.props)
   }
 
   handleClick(group) {
@@ -22,7 +19,7 @@ class TaskGroup extends React.Component {
       this.setState({
         showGroup: false,
         showTasks: true,
-        tasks: this.props.groups[group],
+        tasks: this.props.dataByGroup[group],
         selectedGroup: group
       })
     };
@@ -32,15 +29,14 @@ class TaskGroup extends React.Component {
 
   render() {
       let groups;
-      console.log("render",this.props);
-      if (this.props.groups){
-        groups = Object.keys(this.props.groups).map((group,i) => {
+      if (this.props.dataByGroup){
+        groups = Object.keys(this.props.dataByGroup).map((group,i) => {
         return (
           <TaskGroupItem
             key={i}
             group={group}
             showTasks={this.handleClick}
-            groupTasks={this.props.groups[group]}
+            groupTasks={this.props.dataByGroup[group]}
           />
         );
       });
@@ -49,7 +45,7 @@ class TaskGroup extends React.Component {
           return (
              <Tasks tasks={this.state.tasks}
              group={this.state.selectedGroup}
-             allgroups={this.props.allData}/>
+             allData={this.props.allData}/>
            )
          } else {
            return (

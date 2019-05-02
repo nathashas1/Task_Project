@@ -9,8 +9,8 @@ class Tasks extends React.Component {
       tasks: this.props.tasks,
       showGroup: false,
       groupName: this.props.group,
-      allgroups: this.props.allgroups,
-      groups: [],
+      allData: this.props.allData,
+      dataByGroup: {},
       completedTasks: 0
     }
       this.handleClick = this.handleClick.bind(this)
@@ -18,13 +18,9 @@ class Tasks extends React.Component {
       this.renderGroup = this.renderGroup.bind(this)
   }
 
-
-
-
   componentDidMount(){
     this.isLocked()
   }
-
 
     handleClick(i) {
       return (e) => {
@@ -40,35 +36,29 @@ class Tasks extends React.Component {
               currentState = false
             }
             task.completedAt = currentState
-
-            console.log(task)
             newTasks[i] = task;
-            console.log(newTasks)
-
         }
         let id = task.id;
-        let newGroup = [...this.state.allgroups];
+        let newGroup = [...this.state.allData];
         for (let i = 0; i < newGroup.length; i++) {
           if (id === newGroup[i].id) {
             newGroup[i].completedAt =   task.completedAt
           }
         }
-
-          this.setState({tasks: newTasks, allgroups: newGroup}, () => {
+          this.setState({tasks: newTasks, allData: newGroup}, () => {
             this.isLocked()
           });
-
       }
     }
 
 
   isLocked(){
-    let newGroups = [...this.state.allgroups];
+    let newGroups = [...this.state.allData];
     newGroups.forEach((group) => {
       let flag = false
       for (let i = 0; i < group.dependencyIds.length; i++) {
         let id = group.dependencyIds[i] - 1
-        let currentState = this.state.allgroups[id].completedAt
+        let currentState = this.state.allData[id].completedAt
         if (currentState === null || currentState === false){
           group.locked = true
           group.completedAt = false
@@ -80,13 +70,13 @@ class Tasks extends React.Component {
         group.locked = false
       }
     })
-    this.setState({allgroups: newGroups});
+    this.setState({allData: newGroups});
     let newTasks = [...this.state.tasks];
     newTasks.forEach((task) => {
       let taskId = task.id
       let groupId = taskId - 1
-      task.locked = this.state.allgroups[groupId].locked
-      task.completedAt = this.state.allgroups[groupId].completedAt
+      task.locked = this.state.allData[groupId].locked
+      task.completedAt = this.state.allData[groupId].completedAt
     })
     this.setState({tasks: newTasks});
   }
@@ -95,17 +85,17 @@ class Tasks extends React.Component {
     renderGroup(){
         let groups = {}
         let count = 0
-        for (let i = 0; i < this.state.allgroups.length; i++) {
-            if (this.state.allgroups[i].completedAt === true) {
+        for (let i = 0; i < this.state.allData.length; i++) {
+            if (this.state.allData[i].completedAt === true) {
               count += 1
             }
-            if (groups.hasOwnProperty(this.state.allgroups[i].group)) {
-              groups[this.state.allgroups[i].group].push(this.state.allgroups[i]);
+            if (groups.hasOwnProperty(this.state.allData[i].group)) {
+              groups[this.state.allData[i].group].push(this.state.allData[i]);
             } else {
-              groups[this.state.allgroups[i].group] = [this.state.allgroups[i]];
+              groups[this.state.allData[i].group] = [this.state.allData[i]];
             }
         }
-        this.setState({ groups: groups, showGroup: true, completedTasks: count})
+        this.setState({ dataByGroup: groups, showGroup: true, completedTasks: count})
     }
 
 
@@ -124,12 +114,11 @@ class Tasks extends React.Component {
     return(
         this.state.showGroup ?
            <TaskGroup
-             allData={this.state.allgroups}
-             groups={this.state.groups}
-             completedTasks={this.state.completedTasks}
+             allData={this.state.allData}
+             dataByGroup={this.state.dataByGroup}
            /> :
-           <div className="taskItempage">
-              <div className="groupContent">
+           <div className="tasksPage">
+              <div className="leftContainer">
                   <h1>{this.props.group}</h1>
                   <ul className="allTasks">{tasks}</ul>
               </div>

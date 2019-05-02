@@ -1,16 +1,5 @@
-// import React, { Component } from 'react'
+
 import './App.css'
-// import Fetch from './Fetch.js'
-//
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <Fetch/>
-//       </div>
-//     )
-//   }
-// }
 
 
 import React from 'react';
@@ -46,12 +35,10 @@ class App extends React.Component {
 
 
     render() {
-      console.log("fetch",this.state)
         return (
           <div>
             <TaskGroup allData={this.state.allData}
-            groups={this.state.groups}
-            completedTasks={0}
+            dataByGroup={this.state.groups}
             />
           </div>
         )

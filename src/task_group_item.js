@@ -10,11 +10,11 @@ const TaskGroupItem = ({ group,showTasks,groupTasks }) => {
     }
   }
   return (
-    <div className="taskItem">
-      <img className="imageIcon" src="/group.svg" alt="Logo" />
+    <div className="taskGroupItem">
+      <img className="imageIcon" src="/group.svg" alt="Logo" onClick={showTasks(group)}/>
       <div>
-        <div className="taskName" onClick={showTasks(group)}>{group}</div>
-        <div className="lightText">{completedTasks} OF {groupTasks.length} TASKS COMPLETE</div>
+        <div className="taskGroupName" onClick={showTasks(group)}>{group}</div>
+        <div className="taskGroupName"  style={{color:"#AEAEAE"}} onClick={showTasks(group)}>{completedTasks} OF {groupTasks.length} TASKS COMPLETE</div>
       </div>
     </div>
   )

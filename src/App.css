@@ -1,9 +1,44 @@
-.completed{
-  /* background: url(../public/completed.svg) no-repeat center center fixed; */
+
+
+h1 {
+  color: #6F6F6F;
+  font-family: sans-serif;
+  font-weight: lighter;
+  padding: 30px;
+  padding-bottom: 10px;
+  cursor: default;
 }
 
-.incomplete{
+.taskGroupName{
+  padding: 10px;
+  padding-left: 25px;
+  font-size: 18px;
+  cursor: pointer;
+}
 
+.taskGroupItem{
+  display: flex;
+  flex-direction: row;
+  padding: 25px;
+  border-top: 1px solid #DCE0E5;
+  align-items: center;
+}
+
+.imageIcon{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.taskComplete{
+  padding-left: 25px;
+  cursor: pointer;
+  text-decoration-line: line-through;
+}
+
+.taskIncomplete{
+  padding-left: 25px;
+  cursor: pointer;
 }
 
 .taskItem{
@@ -12,12 +47,18 @@
   padding: 25px;
   border-top: 1px solid #DCE0E5;
   align-items: center;
-
 }
 
-.taskName{
-  padding-left: 25px;
-  cursor: pointer;
+
+.tasksPage{
+  display: flex;
+  flex-direction: row;
+}
+
+.leftContainer{
+  display: flex;
+  flex-direction: column;
+  padding-left: 2px;
 }
 
 
@@ -30,28 +71,8 @@
 }
 
 
-.imageIcon{
-  width: 20px;
-  height: 20px;
-}
-
-.taskItempage{
-  display: flex;
-  flex-direction: row;
-}
-
 .link{
   cursor: pointer;
   color: #5E9DCF;
-  margin-top: 20px;
-
-}
-
-.groupContent{
-  display: flex;
-  flex-direction: column;
-}
-
-.lightText{
-  color: #A4A4A4;
+  margin-top: 60px;
 }
