@@ -9,24 +9,28 @@ class TaskGroup extends React.Component {
       groups: {},
       showGroup: true,
       showTasks: false,
+      selectedGroup: "",
+      allData:""
     }
     this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount(){
     let taskGroups = {}
+    let allData;
     fetch('http://localhost:3000/data.json')
       .then(response => response.json())
         .then(function(data){
+          allData = data;
           for (var i = 0; i < data.length; i++) {
              if (taskGroups.hasOwnProperty(data[i].group)) {
                taskGroups[data[i].group].push(data[i]);
              } else {
-               taskGroups[data[i].group] = [];
+               taskGroups[data[i].group] = [data[i]];
              }
            }
          })
-      .then(() => this.setState({ groups: taskGroups }))
+      .then(() => this.setState({ groups: taskGroups,allData: allData}))
     }
 
   handleClick(group) {
@@ -34,7 +38,8 @@ class TaskGroup extends React.Component {
       this.setState({
         showGroup: false,
         showTasks: true,
-        tasks: this.state.groups[group]
+        tasks: this.state.groups[group],
+        selectedGroup: group
       })
     };
   }
@@ -52,11 +57,16 @@ class TaskGroup extends React.Component {
       });
       if (this.state.showTasks) {
           return (
-             <Tasks tasks={this.state.tasks}/>
+             <Tasks tasks={this.state.tasks}
+             group={this.state.selectedGroup}
+             allgroups={this.state.allData}/>
            )
          } else {
            return (
-             <ul>{groups}</ul>
+             <div>
+               <h1>Things To Do</h1>
+               <ul>{groups}</ul>
+             </div>
            )
          }
        }
