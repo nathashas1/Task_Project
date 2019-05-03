@@ -26,7 +26,6 @@ class TaskGroup extends React.Component {
   }
 
 
-
   render() {
       let groups;
       if (this.props.dataByGroup){

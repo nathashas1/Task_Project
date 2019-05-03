@@ -18,7 +18,7 @@ ON Tasks (GroupId);
 CREATE TABLE Dependencies (
   DependencyId int NOT NULL,
   TaskId int,
-  DependencyIds int
+  Dependent int,
   PRIMARY KEY (DependencyId),
   FOREIGN KEY (TaskId) REFERENCES Tasks(TaskId),
 )

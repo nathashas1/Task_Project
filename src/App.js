@@ -1,7 +1,5 @@
 
 import './App.css'
-
-
 import React from 'react';
 import TaskGroup from './task_group.js'
 

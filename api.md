@@ -1,17 +1,18 @@
 IndexPage
 HTTP METHOD: 'GET'
-URL: "/api/groups"
-REQUEST PARAMETERS: N/A
+URL: "/api/groups?limit=${limit}&offset=${offset}"
+REQUEST PARAMETERS: Limit and Offset
 RESPONSE FORMAT: json
 [
-  0: {
+  {
     "id": 1,
     "group": "Purchases",
     "total_tasks": "3",
     "completed_tasks": 1
   },
-  1: {
-    "id": 1,
+
+  {
+    "id": 2,
     "group": "Build Airplane",
     "total_tasks": "5",
     "completed_tasks": 2
@@ -24,13 +25,14 @@ URL: `/api/tasks?group_id=${groupId}`
 REQUEST PARAMETERS: GroupId
 RESPONSE FORMAT: json
 [
-  0: {
+  {
     "id": 1,
     "task_name": "Buy paint",
     "completed_at": null/true/false
     "dependencies": [3,4]
   },
-  0: {
+
+  {
     "id": 1,
     "task_name": "Go to the bank",
     "completed_at": null/true/false
@@ -39,7 +41,7 @@ RESPONSE FORMAT: json
 ]
 
 
-Completing the task -> Task Page
+Completing/ Incompleting the task -> Task Page
 HTTP METHOD: 'POST'
 URL: `/api/tasks?task_id=${taskId}`,
 REQUEST PARAMETERS: taskId

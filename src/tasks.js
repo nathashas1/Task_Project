@@ -8,10 +8,8 @@ class Tasks extends React.Component {
     this.state = {
       tasks: this.props.tasks,
       showGroup: false,
-      groupName: this.props.group,
       allData: this.props.allData,
-      dataByGroup: {},
-      completedTasks: 0
+      dataByGroup: {}
     }
       this.handleClick = this.handleClick.bind(this)
       this.isLocked = this.isLocked.bind(this)
@@ -83,10 +81,8 @@ class Tasks extends React.Component {
 
     renderGroup(){
         let groups = {}
-        let count = 0
         for (let i = 0; i < this.state.allData.length; i++) {
             if (this.state.allData[i].completedAt === true) {
-              count += 1
             }
             if (groups.hasOwnProperty(this.state.allData[i].group)) {
               groups[this.state.allData[i].group].push(this.state.allData[i]);
@@ -94,7 +90,7 @@ class Tasks extends React.Component {
               groups[this.state.allData[i].group] = [this.state.allData[i]];
             }
         }
-        this.setState({ dataByGroup: groups, showGroup: true, completedTasks: count})
+        this.setState({ dataByGroup: groups, showGroup: true})
     }
 
 

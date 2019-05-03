@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 const TaskGroupItem = ({ group,showTasks,groupTasks }) => {
   let completedTasks = 0
   for (let i = 0; i < groupTasks.length; i++) {
