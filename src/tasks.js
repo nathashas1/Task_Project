@@ -28,7 +28,6 @@ class Tasks extends React.Component {
         let task = {...this.state.tasks[i]};
         let currentState = task.completedAt;
         if (!(this.state.tasks[i].locked)) {
-            console.log("in if")
             if (currentState === null || currentState === false){
               currentState = true
 
