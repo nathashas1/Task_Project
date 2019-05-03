@@ -7,7 +7,7 @@ CREATE TABLE Tasks (
   TaskId int NOT NULL,
   taskName varchar(255) NOT NULL,
   GroupId int,
-  CompletedAt DEFAULT 'null',
+  CompletedAt varchar(255) DEFAULT 'null',
   PRIMARY KEY (TaskId),
   FOREIGN KEY (GroupId) REFERENCES Groups(GroupId)
 )
