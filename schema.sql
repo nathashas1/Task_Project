@@ -1,6 +1,7 @@
 CREATE TABLE Groups (
   GroupId int NOT NULL,
   GroupName varchar(255) NOT NULL
+  PRIMARY KEY (GroupId),
 )
 
 CREATE TABLE Tasks (
