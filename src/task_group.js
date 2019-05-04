@@ -14,12 +14,12 @@ class TaskGroup extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+
   handleClick(group) {
     return (e) => {
       this.setState({
         showGroup: false,
         showTasks: true,
-        tasks: this.props.dataByGroup[group],
         selectedGroup: group
       })
     };
@@ -28,21 +28,21 @@ class TaskGroup extends React.Component {
 
   render() {
       let groups;
-      if (this.props.dataByGroup){
-        groups = Object.keys(this.props.dataByGroup).map((group,i) => {
+      if (this.props.groupTasks){
+        groups = Object.keys(this.props.groupTasks).map((group,i) => {
         return (
           <TaskGroupItem
             key={i}
             group={group}
             showTasks={this.handleClick}
-            groupTasks={this.props.dataByGroup[group]}
+            groupTasks={this.props.groupTasks[group]}
           />
         );
       });
     }
       if (this.state.showTasks) {
           return (
-             <Tasks tasks={this.state.tasks}
+             <Tasks tasks={this.props.groupTasks[this.state.selectedGroup]}
              group={this.state.selectedGroup}
              allData={this.props.allData}/>
            )

@@ -1,4 +1,3 @@
-
 import './App.css'
 import React from 'react';
 import TaskGroup from './task_group.js'
@@ -36,7 +35,7 @@ class App extends React.Component {
         return (
           <div>
             <TaskGroup allData={this.state.allData}
-            dataByGroup={this.state.groups}
+            groupTasks={this.state.groups}
             />
           </div>
         )

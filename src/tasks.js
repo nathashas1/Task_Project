@@ -9,7 +9,7 @@ class Tasks extends React.Component {
       tasks: this.props.tasks,
       showGroup: false,
       allData: this.props.allData,
-      dataByGroup: {}
+      groupTasks: {}
     }
       this.handleClick = this.handleClick.bind(this)
       this.isLocked = this.isLocked.bind(this)
@@ -82,15 +82,13 @@ class Tasks extends React.Component {
     renderGroup(){
         let groups = {}
         for (let i = 0; i < this.state.allData.length; i++) {
-            if (this.state.allData[i].completedAt === true) {
-            }
             if (groups.hasOwnProperty(this.state.allData[i].group)) {
               groups[this.state.allData[i].group].push(this.state.allData[i]);
             } else {
               groups[this.state.allData[i].group] = [this.state.allData[i]];
             }
         }
-        this.setState({ dataByGroup: groups, showGroup: true})
+        this.setState({ groupTasks: groups, showGroup: true})
     }
 
 
@@ -110,7 +108,7 @@ class Tasks extends React.Component {
         this.state.showGroup ?
            <TaskGroup
              allData={this.state.allData}
-             dataByGroup={this.state.dataByGroup}
+             groupTasks={this.state.groupTasks}
            /> :
            <div className="tasksPage">
               <div className="leftContainer">
